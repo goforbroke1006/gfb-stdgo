@@ -2,7 +2,7 @@
 // Created by goforbroke on 07.02.19.
 //
 
-#include "io.h"
+#include "../include/io.h"
 
 std::string gfb::stdgo::io::ioutil::ReadFile(const std::string &filename) {
     std::stringstream ss;

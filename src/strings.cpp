@@ -2,7 +2,7 @@
 // Created by goforbroke on 06.02.19.
 //
 
-#include "strings.h"
+#include "../include/strings.h"
 
 std::vector<std::string> gfb::stdgo::strings::Split(const std::string &s, const std::string &sep) {
     std::vector<std::string> res;

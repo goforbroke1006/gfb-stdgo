@@ -2,7 +2,7 @@
 // Created by goforbroke on 06.02.19.
 //
 
-#include "time.h"
+#include "../include/time.h"
 
 
 //const char *gfb::stdgo::time::RFC3339 = "2006-01-02T15:04:05Z07:00";
