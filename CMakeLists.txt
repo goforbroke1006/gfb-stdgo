@@ -5,7 +5,10 @@ project(gfb-stdgo
 include(GNUInstallDirs)
 
 file(GLOB SOURCES src/*.cpp)
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+add_library(${PROJECT_NAME} SHARED ${SOURCES}
+        include/all.h
+        include/channel.h
+        )
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 target_include_directories(${PROJECT_NAME} PRIVATE .)

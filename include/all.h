@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "channel.h"
 #include "io.h"
 #include "strings.h"
 #include "strings-templates.h"

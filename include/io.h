@@ -2,8 +2,8 @@
 // Created by goforbroke on 07.02.19.
 //
 
-#ifndef PROJECT_IO_H
-#define PROJECT_IO_H
+#ifndef GFB_STDGO_IO_H
+#define GFB_STDGO_IO_H
 
 #include <string>
 #include <fstream>
@@ -21,4 +21,4 @@ namespace gfb {
     }
 }
 
-#endif //PROJECT_IO_H
+#endif //GFB_STDGO_IO_H

@@ -4,8 +4,8 @@
 
 #pragma once
 
-#ifndef PROJECT_STRINGS_H
-#define PROJECT_STRINGS_H
+#ifndef GFB_STDGO_STRINGS_H
+#define GFB_STDGO_STRINGS_H
 
 #include <string>
 #include <sstream>
@@ -29,4 +29,4 @@ namespace gfb {
     }
 }
 
-#endif //PROJECT_STRINGS_H
+#endif //GFB_STDGO_STRINGS_H
