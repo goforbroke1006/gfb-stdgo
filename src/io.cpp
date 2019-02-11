@@ -7,7 +7,7 @@
 std::string gfb::stdgo::io::ioutil::ReadFile(const std::string &filename) {
     std::stringstream ss;
     std::string line;
-    std::ifstream f(filename);
+    std::ifstream f(filename.c_str());
     if (!f.is_open()) {
         throw std::runtime_error("can't open file");
     }
