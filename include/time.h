@@ -17,6 +17,8 @@ namespace gfb {
     namespace stdgo {
         namespace time {
 
+            const std::string RFC3339 = "2006-01-02T15:04:05Z07:00";
+
             class Time;
 
             class Duration {
@@ -55,19 +57,6 @@ namespace gfb {
 
                 bool After(const Time &u) const;
             };
-
-            const std::string RFC3339 = "2006-01-02T15:04:05Z07:00";
-//            const char *RFC3339;
-
-//            class Time {
-//            public:
-//                explicit Time() {}
-//                Time operator+(int interval)
-//            };
-
-//            time_t Now();
-
-//            time_t Parse(const std::string &layout, const std::string &value);
 
         }
     }

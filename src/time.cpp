@@ -52,7 +52,6 @@ gfb::stdgo::time::Time::Parse(const std::string &layout, const std::string &valu
     struct tm tm{};
     strptime(value.c_str(), tmpLayout.c_str(), &tm);
 
-//    return {mktime(&tm)};
     return gfb::stdgo::time::Time(
             mktime(&tm)
     );
@@ -86,15 +85,3 @@ bool
 gfb::stdgo::time::Time::After(const gfb::stdgo::time::Time &u) const {
     return this->holder > u.holder;
 }
-
-
-//time_t gfb::stdgo::time::Now() {
-//    time_t now = std::time(0);
-//    return now;
-//}
-//
-//time_t gfb::stdgo::time::Parse(const std::string &layout, const std::string &value) {
-//
-//
-//}
-

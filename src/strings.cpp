@@ -28,7 +28,8 @@ std::vector<std::string> gfb::stdgo::strings::Split(const std::string &s, const 
 }
 
 std::string gfb::stdgo::strings::Trim(std::string s, const std::string &cutset) {
-    if (s.empty()) return s;
+    if (s.empty() || cutset.empty())
+        return s;
     for (long i = 0; i < cutset.length(); ++i) {
 
         const char &ch = cutset.at(i);
@@ -57,6 +58,8 @@ std::string gfb::stdgo::strings::Repeat(const std::string &s, size_t count) {
 
 std::string gfb::stdgo::strings::Replace(const std::string &s, const std::string &old, const std::string &_new, int n) {
     std::string res = s;
+    if (old.empty())
+        return s;
     auto next = static_cast<size_t>(n < 0 ? 0 : n);
     while (true) {
         next = res.find(old, next);

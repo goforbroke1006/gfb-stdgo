@@ -15,21 +15,19 @@ TEST(strings_Repeat, positive) {
 
 TEST(strings_Replace, positive) {
     ASSERT_TRUE(gfb::stdgo::strings::Replace("hello-world###789", "hello", "under", -1) == "under-world###789");
-//    ASSERT_TRUE(gfb::stdgo::strings::Replace("", "", "", -1) == "");
-//    ASSERT_TRUE(gfb::stdgo::strings::Replace("", "", "", -1) == "");
-//    ASSERT_TRUE(gfb::stdgo::strings::Replace("", "", "", -1) == "");
+    ASSERT_TRUE(
+            gfb::stdgo::strings::Replace("hello-hell-h-world-wor", "ell", "++++", -1) == "h++++o-h++++-h-world-wor");
+    ASSERT_TRUE(gfb::stdgo::strings::Replace("hello", "", "", -1) == "hello");
 }
 
 TEST(strings_Split, positive) {
     ASSERT_TRUE(gfb::stdgo::strings::Split("a b c d", " ").size() == 4);
     ASSERT_TRUE(gfb::stdgo::strings::Split("hello#hello#", "#").size() == 3);
-//    ASSERT_TRUE(gfb::stdgo::strings::Split("", "").size() == 0);
-//    ASSERT_TRUE(gfb::stdgo::strings::Split("", "").size() == 0);
 }
 
 TEST(strings_Trim, positive) {
+    ASSERT_TRUE(gfb::stdgo::strings::Trim("", "") == "");
     ASSERT_TRUE(gfb::stdgo::strings::Trim("  hello  ", " ") == "hello");
-//    ASSERT_TRUE(gfb::stdgo::strings::Trim("", "") == "");
-//    ASSERT_TRUE(gfb::stdgo::strings::Trim("", "") == "");
-//    ASSERT_TRUE(gfb::stdgo::strings::Trim("", "") == "");
+    ASSERT_TRUE(gfb::stdgo::strings::Trim("###hello___", "#_") == "hello");
+    ASSERT_TRUE(gfb::stdgo::strings::Trim("wildfowl", "") == "wildfowl");
 }
