@@ -1,5 +1,5 @@
 language: cpp
-sudo: false
+sudo: true
 os:
 - linux
 
@@ -50,6 +50,7 @@ matrix:
     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 before_install:
+- apt-get install -y libgtest-dev
 - eval "${MATRIX_EVAL}"
 
 script:
