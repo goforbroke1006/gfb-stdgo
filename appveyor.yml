@@ -28,11 +28,11 @@ install:
 - appveyor DownloadFile https://github.com/google/googletest/archive/release-1.8.1.tar.gz -FileName googletest.tar.gz
 - 7z e -y googletest.tar.gz -o"googletest"
 - cd googletest
+- dir /s /b /o:gn
 - mkdir build
 - cd build
-- cmake -G"MSYS Makefiles" ..
+- cmake ..
 - make
-- dir /s /b /o:gn
 - make install
 
 build_script:
