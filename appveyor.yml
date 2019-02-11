@@ -27,7 +27,8 @@ install:
 #- call ci\appveyor\set-env.bat %TOOLCHAIN% %PLATFORM%
 - appveyor DownloadFile https://github.com/google/googletest/archive/release-1.8.1.tar.gz -FileName googletest.tar.gz
 - 7z e -y googletest.tar.gz -o"googletest"
-- cd googletest
+- cd googletest/googletest.tar/
+#- cd googletest/googletest.tar/googletest-release-1.8.1/
 - dir /s /b /o:gn
 - mkdir build
 - cd build
