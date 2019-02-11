@@ -7,6 +7,7 @@
 
 #include <string>
 #include <exception>
+#include <stdexcept>
 #include <fstream>
 #include <sstream>
 
