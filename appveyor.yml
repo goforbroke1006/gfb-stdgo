@@ -30,12 +30,14 @@ install:
 - 7z x -y "googletest.tar.gz" -o"C:\" > nul
 - cd C:\googletest-release-1.8.1\
 #- cd googletest/googletest.tar/googletest-release-1.8.1/
-- dir /s /b /o:gn
-- mkdir build
+#- dir /s /b /o:gn
+- cmake -Bbuild -H.
+#- mkdir build
 - cd build
-- cmake ..
-- make
-- make install
+- dir /s /b /o:gn
+#- cmake ..
+#- make
+#- make install
 
 build_script:
 - mkdir build
@@ -44,4 +46,4 @@ build_script:
 - cmake --build %CMAKE_BUILD_FLAGS% -DBUILD_TESTS=OFF .
 
 test_script:
-- ctest -C %CONFIGURATION% --output-on-failure
+- C:\googletest-release-1.8.1\build\ctest.exe -C %CONFIGURATION% --output-on-failure
