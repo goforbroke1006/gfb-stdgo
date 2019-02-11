@@ -23,10 +23,17 @@ environment:
   - TOOLCHAIN: msvc12
   - TOOLCHAIN: msvc14
 
-#install:
+install:
 #- call ci\appveyor\set-env.bat %TOOLCHAIN% %PLATFORM%
-#- appveyor DownloadFile <url> -FileName <local-file>
-#- 7z e -y <local-file> -o<local-dir>
+- appveyor DownloadFile https://github.com/google/googletest/archive/release-1.8.1.tar.gz -FileName googletest.tar.gz
+- 7z e -y googletest.tar.gz -o"googletest"
+- cd googletest
+- mkdir build
+- cd build
+- cmake -G"MSYS Makefiles" ..
+- make
+- dir /s /b /o:gn
+- make install
 
 build_script:
 - mkdir build
