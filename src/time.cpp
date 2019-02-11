@@ -27,12 +27,12 @@ gfb::stdgo::time::Time::Date(
         const int &hour, const int &min, const int &sec,
         const int &nsec, void *location
 ) {
-    return gfb::stdgo::time::Time(); // TODO: implement me
+    return gfb::stdgo::time::Time(0); // TODO: implement me
 }
 
 gfb::stdgo::time::Time
 gfb::stdgo::time::Time::Now() {
-    return gfb::stdgo::time::Time();
+    return gfb::stdgo::time::Time(0);
 }
 
 gfb::stdgo::time::Time
