@@ -2,8 +2,8 @@
 // Created by goforbroke on 08.02.19.
 //
 
-#ifndef PROJECT_STRINGS_TEMPLATES_H
-#define PROJECT_STRINGS_TEMPLATES_H
+#ifndef GFB_STDGO_STRINGS_TEMPLATES_H
+#define GFB_STDGO_STRINGS_TEMPLATES_H
 
 #include <list>
 
@@ -37,4 +37,4 @@ namespace gfb {
     }
 }
 
-#endif //PROJECT_STRINGS_TEMPLATES_H
+#endif //GFB_STDGO_STRINGS_TEMPLATES_H

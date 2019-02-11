@@ -4,8 +4,8 @@
 
 #pragma once
 
-#ifndef PROJECT_UTF8_H
-#define PROJECT_UTF8_H
+#ifndef GFB_STDGO_UTF8_H
+#define GFB_STDGO_UTF8_H
 
 #include <string>
 #include <cstdio>
@@ -20,4 +20,4 @@ namespace gfb {
     }
 }
 
-#endif //PROJECT_UTF8_H
+#endif //GFB_STDGO_UTF8_H
