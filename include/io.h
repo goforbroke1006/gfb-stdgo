@@ -6,6 +6,7 @@
 #define GFB_STDGO_IO_H
 
 #include <string>
+#include <exception>
 #include <fstream>
 #include <sstream>
 
