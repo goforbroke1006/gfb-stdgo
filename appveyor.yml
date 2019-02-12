@@ -17,9 +17,9 @@ configuration:
 #- Debug
 - Release
 
-artifacts:
-  - path: C:/projects/gfb-stdgo/build/CMakeFiles/CMakeOutput.log
-    name: build-CMakeOutput
+#artifacts:
+#  - path: C:/projects/gfb-stdgo/build/CMakeFiles/CMakeOutput.log
+#    name: build-CMakeOutput
 
 environment:
   matrix:
