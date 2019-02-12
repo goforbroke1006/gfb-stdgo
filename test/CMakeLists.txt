@@ -22,6 +22,7 @@ add_executable(${PROJECT_NAME} ${test1_source} src/strings.cpp)
 ##else()
 ##    target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} pthread gfb-stdgo-src)
 #endif()
-target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} gtest_main gfb-stdgo-src)
+option(gtest_disable_pthreads "Disable uses of pthreads in gtest." ON)
+target_link_libraries(${PROJECT_NAME} gtest_main gfb-stdgo-src)
 
 add_test(NAME Test1 COMMAND ${PROJECT_NAME})
