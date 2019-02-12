@@ -23,6 +23,10 @@ environment:
 #  - TOOLCHAIN: msvc12
 #  - TOOLCHAIN: msvc14
 
+  GTEST_INCLUDE_DIR:  "C:\Program Files (x86)\googletest-distribution\include"
+  GTEST_LIBRARY:      "C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtestd.lib"
+  GTEST_MAIN_LIBRARY: "C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtest_maind.lib"
+
 install:
 #- call ci\appveyor\set-env.bat %TOOLCHAIN% %PLATFORM%
 - appveyor DownloadFile https://github.com/google/googletest/archive/release-1.8.1.zip -FileName googletest.tar.gz
@@ -47,9 +51,9 @@ build_script:
 - cd C:\projects\gfb-stdgo
 - mkdir build
 - cd build
-- cmd: set GTEST_INCLUDE_DIR=C:/Program Files (x86)/googletest-distribution/include/
-- cmd: set GTEST_LIBRARY=C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtestd.lib
-- cmd: set GTEST_MAIN_LIBRARY=C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtest_maind.lib
+#- cmd: set GTEST_INCLUDE_DIR=C:/Program Files (x86)/googletest-distribution/include/
+#- cmd: set GTEST_LIBRARY=C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtestd.lib
+#- cmd: set GTEST_MAIN_LIBRARY=C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtest_maind.lib
 - cmake ..
 - cmake --build . --target install
 #- mkdir build
