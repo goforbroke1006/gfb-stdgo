@@ -40,6 +40,7 @@ install:
 #- make install
 
 build_script:
+- cd C:\projects\gfb-stdgo
 #- mkdir build
 #- cd build
 #- cmake .. %CMAKE_CONFIGURE_FLAGS%
