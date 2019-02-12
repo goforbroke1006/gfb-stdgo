@@ -29,11 +29,15 @@ install:
 #- 7z e -y googletest.tar.gz -o"googletest"
 - 7z x -y "googletest.tar.gz" -o"C:\" > nul
 - cd C:\googletest-release-1.8.1\
+- mkdir build
+- cd build
+- cmake ..
+- cmake --build . --target install
 #- cd googletest/googletest.tar/googletest-release-1.8.1/
 #- dir /s /b /o:gn
-- cmake -Bbuild -H.
+#- cmake -Bbuild -H.
 #- mkdir build
-- cd build
+#- cd build
 - dir /s /b /o:gn
 #- cmake ..
 #- make
@@ -43,6 +47,8 @@ build_script:
 - cd C:\projects\gfb-stdgo
 - mkdir build
 - cd build
+- set GTEST_LIBRARY=C:\googletest-release-1.8.1\build\gtest.lib
+- set GTEST_MAIN_LIBRARY=C:\googletest-release-1.8.1\build\gtest_main.lib
 - cmake ..
 - cmake --build . --target install
 #- mkdir build
