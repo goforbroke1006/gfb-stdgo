@@ -13,6 +13,13 @@ add_library(${PROJECT_NAME} SHARED
         include/channel.h
         include/types.h)
 
+#IF (WIN32)
+#    find_package(Threads)
+#    option(CMAKE_USE_WIN32_THREADS_INIT "using WIN32 threads" ON)
+#ENDIF()
+
+option(gtest_disable_pthreads "Disable uses of pthreads in gtest." ON)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
@@ -28,5 +35,11 @@ install(
 add_subdirectory(src)
 #target_link_libraries(gfb-stdgo-src)
 
+
+include(cmake/googletest.cmake)
+fetch_googletest(
+        ${PROJECT_SOURCE_DIR}/cmake
+        ${PROJECT_BINARY_DIR}/googletest
+)
 enable_testing()
 add_subdirectory(test)
