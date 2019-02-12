@@ -28,5 +28,11 @@ install(
 add_subdirectory(src)
 #target_link_libraries(gfb-stdgo-src)
 
+
+include(cmake/googletest.cmake)
+fetch_googletest(
+        ${PROJECT_SOURCE_DIR}/cmake
+        ${PROJECT_BINARY_DIR}/googletest
+)
 enable_testing()
 add_subdirectory(test)
