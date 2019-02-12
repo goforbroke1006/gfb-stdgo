@@ -23,9 +23,9 @@ environment:
 #  - TOOLCHAIN: msvc12
 #  - TOOLCHAIN: msvc14
 
-  GTEST_INCLUDE_DIR:  'C:\Program Files (x86)\googletest-distribution\include'
-  GTEST_LIBRARY:      'C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtestd.lib'
-  GTEST_MAIN_LIBRARY: 'C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtest_maind.lib'
+#  GTEST_INCLUDE_DIR:  'C:\Program Files (x86)\googletest-distribution\include'
+#  GTEST_LIBRARY:      'C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtestd.lib'
+#  GTEST_MAIN_LIBRARY: 'C:\googletest-release-1.8.1\build\googlemock\gtest\Debug\gtest_maind.lib'
 
 #install:
 #- call ci\appveyor\set-env.bat %TOOLCHAIN% %PLATFORM%
@@ -38,6 +38,9 @@ environment:
 #- cmake ..
 #- cmake --build . --target install
 #- dir /s /b /o:gn
+
+#before_build:
+#  - ps: cmake -G "Visual Studio 10"
 
 build_script:
 - cd C:\projects\gfb-stdgo
