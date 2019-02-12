@@ -10,6 +10,10 @@
 #include <string>
 #include <ctime>
 
+#ifdef _WIN32
+#include "time_win32.h"
+#endif
+
 #include "types.h"
 #include "strings.h"
 
