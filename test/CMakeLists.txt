@@ -3,7 +3,8 @@ project(gfb-stdgo-test)
 #find_package (Boost COMPONENTS unit_test_framework REQUIRED)
 
 # Locate GTest
-find_package(GTest REQUIRED)
+#find_package(GTest REQUIRED)
+find_package(gtest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(test1_source main.cpp)
