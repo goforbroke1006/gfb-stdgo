@@ -34,13 +34,13 @@ install(
 
 add_subdirectory(src)
 
-option(CI_TESTS "CI test suit" OFF)
-if (CI_TESTS)
-    include(cmake/googletest.cmake)
+#option(CI_TESTS "CI test suit" ON)
+if (UNIX)
+    include(test/cmake/googletest.cmake)
     fetch_googletest(
-            ${PROJECT_SOURCE_DIR}/cmake
+            ${PROJECT_SOURCE_DIR}/test/cmake
             ${PROJECT_BINARY_DIR}/googletest
     )
     enable_testing()
     add_subdirectory(test)
-endif (CI_TESTS)
+endif (UNIX)
