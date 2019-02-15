@@ -27,7 +27,12 @@ gfb::stdgo::time::Time::Date(
         const int &hour, const int &min, const int &sec,
         const int &nsec, void *location
 ) {
-    return gfb::stdgo::time::Time(0); // TODO: implement me
+    int64 tmp =
+            getUnixDaysCount(year, month, day) * 86400
+            + hour * 3600
+            + min * 60
+            + sec;
+    return gfb::stdgo::time::Time(tmp); // TODO: implement me
 }
 
 gfb::stdgo::time::Time
@@ -67,7 +72,7 @@ gfb::stdgo::time::Time::Unix(const int64 &sec, const int64 &nsec) {
     return gfb::stdgo::time::Time(0); // TODO: implement me
 }
 
-gfb::stdgo::time::Time::Time(time_t t) {
+gfb::stdgo::time::Time::Time(int64 t) : holder(t) {
     // TODO: implement me
 }
 
@@ -84,4 +89,42 @@ gfb::stdgo::time::Time::AddDate(int years, int months, int days) const {
 bool
 gfb::stdgo::time::Time::After(const gfb::stdgo::time::Time &u) const {
     return this->holder > u.holder;
+}
+
+int64 gfb::stdgo::time::Time::Unix() const {
+    return this->holder;
+}
+
+int gfb::stdgo::time::Time::getUnixDaysCount(const int &year, const int &month, const int &day) {
+
+    int counter = 0;
+
+    if (year > 1970) {
+        int index = 1971;
+        while (year >= index) {
+            counter += (year % 4 == 0) ? 366 : 365;
+            ++index;
+        }
+    }
+
+    // TODO: count if year less than 1970
+
+    bool v = (year % 4 == 0);
+
+    int monthIndex = 1;
+    while (monthIndex < month) {
+        int md = 0;
+        if (monthIndex == 2)
+            md = v ? 29 : 28;
+        else if (monthIndex == 1 || monthIndex == 3 || monthIndex == 5 || monthIndex == 7
+                 || monthIndex == 8 || monthIndex == 10 || monthIndex == 12)
+            md = 31;
+        else
+            md = 30;
+
+        counter += md;
+        ++monthIndex;
+    }
+
+    return counter + (day - 1);
 }

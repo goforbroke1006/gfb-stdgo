@@ -50,16 +50,21 @@ namespace gfb {
 
                 static Time Unix(const int64 &sec, const int64 &nsec);
 
-            private:
-                time_t holder;
-
-                explicit Time(time_t t);
-
                 Time Add(const Duration &d) const;
 
                 Time AddDate(int years, int months, int days) const;
 
                 bool After(const Time &u) const;
+
+                int64 Unix() const;
+
+                static int getUnixDaysCount(const int &year, const int &month, const int &day);
+
+            private:
+                int64 holder;
+
+                explicit Time(int64 t);
+
             };
 
         }
