@@ -29,7 +29,7 @@ gfb::stdgo::time::Location::LoadLocation(const std::string &name) {
 
 const std::string
 gfb::stdgo::time::Location::String() const {
-    return std::__cxx11::string();
+    return ""; // TODO: implement me!!
 }
 
 int
