@@ -1,8 +1,41 @@
+#include <memory>
+
 //
 // Created by goforbroke on 06.02.19.
 //
 
 #include "../include/time.h"
+
+std::string gfb::stdgo::time::zeroPadding(int val, unsigned int exp) {
+    std::stringstream ss;
+    if (exp == 2) {
+        if (val < 10)
+            ss << "0" << val;
+        else ss << val;
+    }
+    return ss.str(); // TODO: workaround
+}
+
+
+std::shared_ptr<gfb::stdgo::time::Location>
+gfb::stdgo::time::Location::LoadLocation(const std::string &name) {
+    if (name.empty() || name == "UTC")
+        return std::make_shared<gfb::stdgo::time::Location>(0);
+    if (name.empty() || name == "MSK")
+        return std::make_shared<gfb::stdgo::time::Location>(3, 0);
+
+    throw std::runtime_error("is not implemented");
+}
+
+const std::string
+gfb::stdgo::time::Location::String() const {
+    return ""; // TODO: implement me!!
+}
+
+int
+gfb::stdgo::time::Location::getTimeShift() const {
+    return timeShift;
+}
 
 
 gfb::stdgo::time::Duration
@@ -25,9 +58,15 @@ gfb::stdgo::time::Time
 gfb::stdgo::time::Time::Date(
         const int &year, const int &month, const int &day,
         const int &hour, const int &min, const int &sec,
-        const int &nsec, void *location
+        const int &nsec, std::shared_ptr<Location> location
 ) {
-    return gfb::stdgo::time::Time(0); // TODO: implement me
+    std::stringstream ss;
+    ss << year << "-" << zeroPadding(month, 2) << "-" << zeroPadding(day, 2)
+       << " "
+       << zeroPadding(hour, 2) << ":" << zeroPadding(min, 2) << ":" << zeroPadding(sec, 2);
+    Time dt = gfb::stdgo::time::Time::Parse("2006-01-02 15:04:05", ss.str());
+    dt.location = new Location(location->getTimeShift());
+    return dt; // TODO: implement me
 }
 
 gfb::stdgo::time::Time
@@ -47,18 +86,18 @@ gfb::stdgo::time::Time::Parse(const std::string &layout, const std::string &valu
     tmpLayout = gfb::stdgo::strings::Replace(tmpLayout, "04", "%M", -1);
     tmpLayout = gfb::stdgo::strings::Replace(tmpLayout, "05", "%S", -1);
 
-    // TODO: add timezone support
-
-    struct tm tm{};
-    strptime(value.c_str(), tmpLayout.c_str(), &tm);
-
-    return gfb::stdgo::time::Time(
-            mktime(&tm)
-    );
+    std::istringstream in{value};
+    date::sys_seconds tp;
+    in >> date::parse(tmpLayout.c_str(), tp);
+    return Time(tp.time_since_epoch().count());
 }
 
 gfb::stdgo::time::Time
-gfb::stdgo::time::Time::ParseInLocation(const std::string &layout, const std::string &value, void *loc) {
+gfb::stdgo::time::Time::ParseInLocation(
+        const std::string &layout,
+        const std::string &value,
+        const std::shared_ptr<Location> &loc
+) {
     return gfb::stdgo::time::Time(0); // TODO: implement me
 }
 
@@ -67,7 +106,9 @@ gfb::stdgo::time::Time::Unix(const int64 &sec, const int64 &nsec) {
     return gfb::stdgo::time::Time(0); // TODO: implement me
 }
 
-gfb::stdgo::time::Time::Time(time_t t) {
+gfb::stdgo::time::Time::Time(int64 t)
+        : holder(t),
+          location(nullptr) {
     // TODO: implement me
 }
 
@@ -84,4 +125,24 @@ gfb::stdgo::time::Time::AddDate(int years, int months, int days) const {
 bool
 gfb::stdgo::time::Time::After(const gfb::stdgo::time::Time &u) const {
     return this->holder > u.holder;
+}
+
+gfb::stdgo::time::Time
+gfb::stdgo::time::Time::UTC() const {
+    return gfb::stdgo::time::Time(
+            this->holder - (
+                    nullptr != this->location ? this->location->getTimeShift()
+                                              : 0
+            )
+    );
+}
+
+int64
+gfb::stdgo::time::Time::Unix() const {
+    return this->holder;
+}
+
+gfb::stdgo::time::Time::~Time() {
+    if (nullptr != this->location)
+        delete this->location;
 }

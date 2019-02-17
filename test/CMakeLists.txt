@@ -12,7 +12,7 @@ project(gfb-stdgo-test)
 #find_package(gtest REQUIRED)
 #include_directories(${GTEST_INCLUDE_DIRS})
 
-set(test1_source main.cpp)
+set(test1_source main.cpp src/time.cpp)
 add_executable(${PROJECT_NAME} ${test1_source} src/strings.cpp)
 #target_link_libraries(test1 ctest)
 

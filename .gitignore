@@ -1,2 +1,4 @@
 .idea
 cmake-build-debug/
+vendor/*
+!vendor/date.h

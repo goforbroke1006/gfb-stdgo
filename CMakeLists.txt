@@ -6,6 +6,8 @@ project(gfb-stdgo
         )
 include(GNUInstallDirs)
 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DNDEBUG")
+
 file(GLOB SOURCES src/*.cpp)
 add_library(${PROJECT_NAME} SHARED
         ${SOURCES}
