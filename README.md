@@ -12,3 +12,8 @@ Clone of Golang standard library for C++ (in process)
 * strings
 * time
 * utf8
+
+
+### Dependencies
+
+* [date lib by HowardHinnant](https://github.com/HowardHinnant/date)
