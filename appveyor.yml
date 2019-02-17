@@ -24,7 +24,6 @@ build_script:
 - cd %APPVEYOR_BUILD_FOLDER%
 - mkdir build
 - cd build
-#- cmake .. -DCI_TESTS=OFF %CMAKE_CONFIGURE_FLAGS%
 - cmake .. %CMAKE_CONFIGURE_FLAGS%
 - cmake --build . --target install
 

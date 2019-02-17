@@ -1,62 +1,55 @@
 language: cpp
 sudo: true
 os:
-- linux
+  - linux
 
 matrix:
   include:
-  # works on Precise and Trusty
-  - os: linux
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-4.9
-    env:
-    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-
-  # works on Precise and Trusty
-  - os: linux
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-5
-    env:
-    - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-
-  # works on Precise and Trusty
-  - os: linux
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-6
-    env:
-    - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-
-  # works on Precise and Trusty
-  - os: linux
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-7
-    env:
-    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+#    - os: linux
+#      addons:
+#        apt:
+#          sources:
+#            - ubuntu-toolchain-r-test
+#          packages:
+#            - g++-4.9
+#      env:
+#        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env:
+        - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 before_install:
-- bash ./test/scripts/bootstrap.sh
-- eval "${MATRIX_EVAL}"
+  - bash ./test/scripts/bootstrap.sh
+  - eval "${MATRIX_EVAL}"
 
 script:
-#- cmake -H. -Bcmake-build-debug -DCI_TESTS=ON
-- cmake -H. -Bcmake-build-debug
-- cd cmake-build-debug
-- cmake --build .
-- ./test/gfb-stdgo-test
+  - cmake -H. -Bcmake-build-debug
+  - cd cmake-build-debug
+#  - cmake --build .
+  - cmake --build . --target test
+#  - ./test/gfb-stdgo-test
 #  - ctest --output-on-failure
