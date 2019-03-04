@@ -23,6 +23,7 @@ environment:
 build_script:
   - set PATH=C:\Program Files\Git\mingw64\bin;%PATH%
   - cd %APPVEYOR_BUILD_FOLDER%
+  - bash bootstrap.sh
   - mkdir build
   - cd build
   - cmake .. %CMAKE_CONFIGURE_FLAGS%
