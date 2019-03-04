@@ -13,10 +13,15 @@ namespace gfb {
                 class Server {
                 public:
                     Server(const std::string &addr, void *handler, 
-                        const ssize_t &readTimeout, const ssize_t &writeTimeout) {}
+                        const ssize_t &readTimeout, const ssize_t &writeTimeout);
                 };
                 
-                class Response {};
+                class Response {
+                public:
+                    Response(const std::string &content);
+                private:
+                    std::string content;
+                };
                 
                 Response Get(const std::string &url);
                 Response Post(const std::string &url, const std::string &contentType, const std::string &body);
