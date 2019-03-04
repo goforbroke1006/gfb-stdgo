@@ -4,9 +4,9 @@
 #include <string>
 #include <map>
 #include <map>
-#include <bits/shared_ptr.h>
 
 #include <curl/curl.h>
+#include <memory>
 
 #include "../io.h"
 
@@ -18,6 +18,20 @@ namespace gfb {
                 };
 
                 class Cookie {
+                public:
+                    explicit Cookie(const std::string &name, const std::string &val);
+
+                    const std::string &getName() const;
+
+                    void setName(const std::string &name);
+
+                    const std::string &getVal() const;
+
+                    void setVal(const std::string &val);
+
+                private:
+                    std::string name;
+                    std::string val;
                 };
 
                 class Response {
@@ -39,12 +53,10 @@ namespace gfb {
 
                     void AddCookie(const Cookie &c);
 
-                    Cookie Cookie(const std::string &name) const;
+                    std::shared_ptr<gfb::stdgo::net::http::Cookie> Cookie(const std::string &name) const;
 
                     std::vector<gfb::stdgo::net::http::Cookie> Cookies() const;
 
-//                    func (r *Request) ParseForm() error
-//                    func (r *Request) ParseMultipartForm(maxMemory int64) error
                     std::string PostFormValue(const std::string &key) const;
 
                     std::string Referer() const;
@@ -56,21 +68,24 @@ namespace gfb {
                 private:
                     std::string method;
                     std::string url;
+
+                    std::vector<gfb::stdgo::net::http::Cookie> __cookies;
                 };
 
                 class Client {
                 public:
 
-                    Response Do(const Request &req);
+                    Response Do(const Request &req) const;
 
-                    Response Get(const std::string &url);
+                    Response Get(const std::string &url) const;
 
-                    Response Head(const std::string &url);
+                    Response Head(const std::string &url) const;
 
                     Response Post(const std::string &url, const std::string &contentType,
-                                  const gfb::stdgo::io::Reader &body);
+                                  const gfb::stdgo::io::Reader &body) const;
 
-                    Response PostForm(const std::string &url, const std::map<std::string, std::string> data);
+                    Response PostForm(const std::string &url,
+                                      const std::map<std::string, std::string> &data) const;
                 };
 
                 class Server {
