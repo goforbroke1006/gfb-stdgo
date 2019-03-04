@@ -14,6 +14,7 @@ add_library(${PROJECT_NAME} SHARED
         include/all.h
         include/channel.h
         include/types.h)
+target_link_libraries(${PROJECT_NAME} curl)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
@@ -46,3 +47,6 @@ if (UNIX)
     enable_testing()
     add_subdirectory(test)
 endif (UNIX)
+
+
+add_subdirectory(examples/001-net-http-get-request)

@@ -13,5 +13,6 @@
 #include "strings-templates.h"
 #include "time.h"
 #include "utf8.h"
+#include "net/http.h"
 
 #endif //PROJECT_GFB_GOLANG_STD_H

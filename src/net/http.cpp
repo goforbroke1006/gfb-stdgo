@@ -13,13 +13,26 @@ gfb::stdgo::net::http::Response::Response(const std::string &content) {
     this->content = content;
 }
 
+const std::string &gfb::stdgo::net::http::Response::getContent() const {
+    return content;
+}
+
+void gfb::stdgo::net::http::Response::setContent(const std::string &content) {
+    Response::content = content;
+}
+
+gfb::stdgo::net::http::Server::Server(const std::string &addr, void *handler, const ssize_t &readTimeout,
+                                      const ssize_t &writeTimeout) {
+
+}
+
 gfb::stdgo::net::http::Response gfb::stdgo::net::http::Get(const std::string &url) {
     CURL *c = curl_easy_init();
     if (c == nullptr) {
         throw std::runtime_error("CURL init error");
     }
 
-    struct curl_slist *chunk = NULL;
+    struct curl_slist *chunk = nullptr;
     //chunk = curl_slist_append(chunk, "accept:          text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
     //chunk = curl_slist_append(chunk, "accept-language: ru,en-US;q=0.9,en;q=0.8,uk;q=0.7");
     chunk = curl_slist_append(chunk, "x-compress:      null");
@@ -37,10 +50,13 @@ gfb::stdgo::net::http::Response gfb::stdgo::net::http::Get(const std::string &ur
     curl_easy_cleanup(c);
 
     if (res != CURLE_OK) {
-        std::cerr << "CURL (" << res << ") : " << curl_easy_strerror(res) << std::endl;
         throw std::runtime_error(curl_easy_strerror(res));
     }
     gfb::stdgo::net::http::Response resp(respData);
     return resp;
 }
 
+gfb::stdgo::net::http::Response
+gfb::stdgo::net::http::Post(const std::string &url, const std::string &contentType, const std::string &body) {
+    return gfb::stdgo::net::http::Response("");
+}
