@@ -6,6 +6,8 @@ project(gfb-stdgo
         )
 include(GNUInstallDirs)
 
+include_directories(vendor/curl/include)
+
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DNDEBUG")
 
 file(GLOB SOURCES src/*.cpp)

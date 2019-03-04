@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-#include <curl/curl.h>
+#include "curl/curl.h"
 
 namespace gfb {
     namespace stdgo {
