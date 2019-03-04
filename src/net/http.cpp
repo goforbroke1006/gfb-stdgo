@@ -4,11 +4,6 @@
 
 #include "../../include/net/http.h"
 
-size_t __write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
-    ((std::string *) userp)->append((char *) contents, size * nmemb);
-    return size * nmemb;
-}
-
 gfb::stdgo::net::http::Response::Response(const std::string &content) {
     this->content = content;
 }
@@ -21,9 +16,54 @@ void gfb::stdgo::net::http::Response::setContent(const std::string &content) {
     Response::content = content;
 }
 
+gfb::stdgo::net::http::Request
+gfb::stdgo::net::http::Request::NewRequest(
+        const std::string &method,
+        const std::string &url,
+        const gfb::stdgo::io::Reader &body
+) {
+    return {};
+}
+
+void
+gfb::stdgo::net::http::Request::AddCookie(const gfb::stdgo::net::http::Cookie &c) {
+
+}
+
+gfb::stdgo::net::http::Cookie
+gfb::stdgo::net::http::Request::Cookie(const std::string &name) const {
+    return {};
+}
+
+std::vector<gfb::stdgo::net::http::Cookie>
+gfb::stdgo::net::http::Request::Cookies() const {
+    return std::vector<gfb::stdgo::net::http::Cookie>();
+}
+
+std::string gfb::stdgo::net::http::Request::PostFormValue(const std::string &key) const {
+    return "";
+}
+
+std::string gfb::stdgo::net::http::Request::Referer() const {
+    return "";
+}
+
+void gfb::stdgo::net::http::Request::SetBasicAuth(const std::string &username, const std::string &password) {
+
+}
+
+std::string gfb::stdgo::net::http::Request::UserAgent() const {
+    return "";
+}
+
 gfb::stdgo::net::http::Server::Server(const std::string &addr, void *handler, const ssize_t &readTimeout,
                                       const ssize_t &writeTimeout) {
 
+}
+
+size_t __write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
+    ((std::string *) userp)->append((char *) contents, size * nmemb);
+    return size * nmemb;
 }
 
 gfb::stdgo::net::http::Response gfb::stdgo::net::http::Get(const std::string &url) {
@@ -60,3 +100,5 @@ gfb::stdgo::net::http::Response
 gfb::stdgo::net::http::Post(const std::string &url, const std::string &contentType, const std::string &body) {
     return gfb::stdgo::net::http::Response("");
 }
+
+

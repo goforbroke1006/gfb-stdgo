@@ -2,7 +2,15 @@
 // Created by goforbroke on 07.02.19.
 //
 
+#include <include/io.h>
+
 #include "../include/io.h"
+
+std::string gfb::stdgo::io::ioutil::ReadAll(const gfb::stdgo::io::Reader &r) {
+    std::string res;
+    r.Read(res);
+    return res;
+}
 
 std::string gfb::stdgo::io::ioutil::ReadFile(const std::string &filename) {
     std::stringstream ss;

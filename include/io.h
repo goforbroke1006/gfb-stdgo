@@ -10,12 +10,22 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 namespace gfb {
     namespace stdgo {
         namespace io {
 
+            class Reader {
+            public:
+                virtual void Read(std::string &p) const = 0;
+
+                virtual void Read(std::vector<char> p) const = 0;
+            };
+
             namespace ioutil {
+                std::string ReadAll(const Reader &r);
+
                 std::string ReadFile(const std::string &filename);
             }
 
