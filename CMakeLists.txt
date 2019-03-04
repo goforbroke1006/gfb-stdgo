@@ -6,8 +6,6 @@ project(gfb-stdgo
         )
 include(GNUInstallDirs)
 
-include_directories(vendor/curl/include)
-
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DNDEBUG")
 
 file(GLOB SOURCES src/*.cpp)
@@ -27,8 +25,12 @@ target_include_directories(${PROJECT_NAME} PRIVATE .)
 if (WIN32 OR MSVC)
     install(TARGETS ${NAME} RUNTIME DESTINATION ${LIB_INSTALL_DIR})
 else ()
-    #    install(TARGETS ${NAME} LIBRARY DESTINATION path)
-    install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    message(STATUS "CMAKE_INSTALL_LIBDIR = ${CMAKE_INSTALL_LIBDIR}")
+    install(
+            TARGETS ${PROJECT_NAME}
+            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT library)
 endif ()
 
 

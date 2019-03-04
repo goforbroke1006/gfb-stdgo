@@ -6,7 +6,8 @@
 #include <map>
 #include <bits/shared_ptr.h>
 
-#include "curl/curl.h"
+#include <curl/curl.h>
+
 #include "../io.h"
 
 namespace gfb {
